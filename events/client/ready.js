@@ -1,4 +1,6 @@
-const { ActivityType } = require("discord.js")
+const { ActivityType } = require("discord.js");
+const { isBlacklist, addGuild, configAntiraid } = require("../../utils/checkers");
+const Guild = require("../../models/Guild");
 
 module.exports = {
     name: "ready",
@@ -12,6 +14,6 @@ module.exports = {
                     type: ActivityType.Listening
                 }
             ]
-        })
+        });
     }
 }

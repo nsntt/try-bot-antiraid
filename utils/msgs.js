@@ -8,6 +8,11 @@ module.exports = {
                 m.delete().catch(e => {});
             }, 5000);
         });
+    },
+    success: (message, succ) => {
+        message.channel.send({
+            embeds: [new EmbedBuilder().setDescription(`${succ}`).setColor('Green').setFooter({ "text": "discord.gg/nix" })]
+        })
     }
 }
 

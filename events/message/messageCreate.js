@@ -1,7 +1,7 @@
 const { Client, Message, EmbedBuilder, Collection} = require("discord.js");
 const Guild = require("../../models/Guild");
 const Blacklist = require("../../models/Blacklist");
-const { error } = require("../../utils/error");
+const { error } = require("../../utils/msgs");
 
 module.exports = {
     name: "messageCreate",
@@ -33,13 +33,13 @@ module.exports = {
 
         const now = Date.now();
         const timestamps = cooldowns.get(cmd.name);
-        const amount = (command.cooldown || 1) * 1000;
+        const amount = (cmd.cooldown || 1) * 1000;
 
         if(timestamps.has(message.author.id)) {
             const time = timestamps.get(message.author.id) + amount;
             if(now < time) {
                 const left = (time - now) / 1000
-                return await error(message, `Tengo que enfriar mis sistemas, espera \`${left.toFixed(1)}s\`!`);
+                return await error(message, `Tengo que enfriar mis sistemas, espera \`${left.toFixed(0)}s\`!`);
             }
         }
 

@@ -1,6 +1,4 @@
-const Guild = require("../../models/Guild");
-const Blacklist = require("../../models/Blacklist");
-const { isBlacklist, addGuild } = require("../../utils/checkers");
+const { isBlacklist, addGuild, configAntiraid } = require("../../utils/checkers");
 
 module.exports = {
     name: "guildCreate",
@@ -8,5 +6,6 @@ module.exports = {
         // revisa si el servidor esta denegado en la base de datos
         await isBlacklist(guild);
         await addGuild(guild);
+        await configAntiraid(guild);
     }
 }
